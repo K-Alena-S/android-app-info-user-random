@@ -1,5 +1,6 @@
 package com.example.android_app_info_user_random.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -20,6 +21,7 @@ import androidx.compose.ui.Modifier
 import com.example.android_app_info_user_random.viewmodel.UserViewModel
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,8 +35,18 @@ fun UserScreen(
         viewModel.setListState(listState)
     }
 
+    val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        viewModel.error.collect { errorMessage ->
+            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+        }
+    }
+
     val users by viewModel.users.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
+
+    val isRefreshEnabled = !isLoading
 
     if (users.isEmpty()) {
         viewModel.loadUsers()
@@ -45,7 +57,10 @@ fun UserScreen(
             TopAppBar(
                 title = { Text("Список пользователей") },
                 actions = {
-                    IconButton(onClick = { viewModel.loadUsers() }) {
+                    IconButton(
+                        onClick = { viewModel.loadUsers() },
+                        enabled = isRefreshEnabled
+                    ) {
                         Icon(Icons.Filled.Refresh, contentDescription = "Обновить")
                     }
                 }

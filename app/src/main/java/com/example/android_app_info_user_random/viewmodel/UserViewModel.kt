@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_app_info_user_random.data.models.UserDTO
 import com.example.android_app_info_user_random.data.repository.UserRepository
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
@@ -26,6 +28,9 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
+    private val _error = MutableSharedFlow<String>()
+    val error: SharedFlow<String> = _error
+
     fun loadUsers() {
         viewModelScope.launch {
             _isLoading.value = true
@@ -33,7 +38,7 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
                 val response = repository.fetchUsers()
                 _users.value = response.results
             } catch (e: Exception) {
-
+                _error.emit("Ошибка при загрузке пользователей: ${e.message}")
             } finally {
                 _isLoading.value = false
             }
