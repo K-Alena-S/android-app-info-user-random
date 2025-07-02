@@ -12,6 +12,7 @@ icon = "1.7.8"
 retrofit = "2.11.0"
 gson = "2.11.0"
 koinV = "3.4.0"
+coil = "2.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,6 +34,7 @@ retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofi
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "gson" }
 koin = { module = "io.insert-koin:koin-android", version.ref = "koinV"}
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinV"}
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

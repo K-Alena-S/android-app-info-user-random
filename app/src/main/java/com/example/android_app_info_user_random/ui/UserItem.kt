@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.android_app_info_user_random.data.models.UserDTO
+import coil.compose.AsyncImage
 
 @Composable
 fun UserItem(user: UserDTO) {
@@ -29,7 +31,14 @@ fun UserItem(user: UserDTO) {
             modifier = Modifier
                 .size(64.dp)
                 .background(MaterialTheme.colorScheme.primaryContainer)
-        )
+        ) {
+            AsyncImage(
+                model = user.picture.medium,
+                contentDescription = "User Picture",
+                modifier = Modifier
+                    .fillMaxSize()
+            )
+        }
         Spacer(modifier = Modifier.width(8.dp))
         Column {
             Text(text = "${user.name.title} ${user.name.first} ${user.name.last}", style = MaterialTheme.typography.bodyLarge)
