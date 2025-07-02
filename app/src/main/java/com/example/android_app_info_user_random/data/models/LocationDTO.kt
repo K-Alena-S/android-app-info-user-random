@@ -5,5 +5,7 @@ data class LocationDTO(
     val city: String,
     val state: String,
     val country: String,
-    val postcode: String
+    val postcode: String,
+    val coordinates: CoordinatesDTO,
+    val timezone: TimezoneDTO
 )
