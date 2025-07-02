@@ -36,6 +36,10 @@ fun UserScreen(
     val users by viewModel.users.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
 
+    if (users.isEmpty()) {
+        viewModel.loadUsers()
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
