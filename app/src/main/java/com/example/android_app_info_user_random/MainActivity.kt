@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.android_app_info_user_random.ui.UserScreen
+import com.example.android_app_info_user_random.navigation.AppNavigation
 import com.example.android_app_info_user_random.ui.theme.AndroidappinfouserrandomTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AndroidappinfouserrandomTheme {
-                UserScreen()
+                AppNavigation()
             }
         }
     }

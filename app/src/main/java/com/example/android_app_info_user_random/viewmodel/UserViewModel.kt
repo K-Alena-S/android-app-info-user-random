@@ -1,5 +1,7 @@
 package com.example.android_app_info_user_random.viewmodel
 
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_app_info_user_random.data.models.UserDTO
@@ -9,6 +11,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val repository: UserRepository) : ViewModel() {
+
+    private val _listState = mutableStateOf<LazyListState?>(null)
+    val listState: LazyListState?
+        get() = _listState.value
+
+    fun setListState(state: LazyListState) {
+        _listState.value = state
+    }
 
     private val _users = MutableStateFlow<List<UserDTO>>(emptyList())
     val users: StateFlow<List<UserDTO>> = _users

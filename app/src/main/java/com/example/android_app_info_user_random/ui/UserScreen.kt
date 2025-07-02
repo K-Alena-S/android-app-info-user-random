@@ -2,6 +2,7 @@ package com.example.android_app_info_user_random.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -16,16 +17,20 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.koin.androidx.compose.koinViewModel
 import com.example.android_app_info_user_random.viewmodel.UserViewModel
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
+import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserScreen(viewModel: UserViewModel = koinViewModel()) {
+fun UserScreen(
+    viewModel: UserViewModel,
+    navController: NavController,
+    listState: LazyListState
+) {
     LaunchedEffect(Unit) {
-        viewModel.loadUsers()
+        viewModel.setListState(listState)
     }
 
     val users by viewModel.users.collectAsState()
@@ -52,11 +57,12 @@ fun UserScreen(viewModel: UserViewModel = koinViewModel()) {
                 CircularProgressIndicator()
             } else {
                 LazyColumn(
+                    state = viewModel.listState ?: listState,
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = paddingValues
                 ) {
                     items(users) { user ->
-                        UserItem(user)
+                        UserItem(user, navController)
                     }
                 }
             }
