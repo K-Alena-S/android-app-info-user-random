@@ -39,7 +39,8 @@ fun UserScreen(
 
     LaunchedEffect(Unit) {
         viewModel.error.collect { errorMessage ->
-            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+            val prefix = context.getString(R.string.error_loading_users)
+            Toast.makeText(context, "$prefix $errorMessage", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -58,7 +59,7 @@ fun UserScreen(
                 title = { Text(text = stringResource(R.string.user_screen_title)) },
                 actions = {
                     IconButton(
-                        onClick = { viewModel.loadUsers() },
+                        onClick = { viewModel.loadUsers(true) },
                         enabled = isRefreshEnabled
                     ) {
                         Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.refresh))
@@ -76,7 +77,7 @@ fun UserScreen(
                 CircularProgressIndicator()
             } else {
                 LazyColumn(
-                    state = viewModel.listState ?: listState,
+                    state = listState,
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = paddingValues
                 ) {

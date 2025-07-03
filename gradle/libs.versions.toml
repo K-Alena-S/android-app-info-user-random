@@ -13,6 +13,8 @@ retrofit = "2.11.0"
 gson = "2.11.0"
 koinV = "3.4.0"
 coil = "2.4.0"
+datastore = "1.0.0"
+kotlinx-serialization = "1.7.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,9 +37,11 @@ converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref
 koin = { module = "io.insert-koin:koin-android", version.ref = "koinV"}
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinV"}
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
+datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore"}
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
