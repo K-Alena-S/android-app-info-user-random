@@ -4,6 +4,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android_app_info_user_random.R
 import com.example.android_app_info_user_random.data.models.UserDTO
 import com.example.android_app_info_user_random.data.repository.UserRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -38,7 +39,7 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
                 val response = repository.fetchUsers()
                 _users.value = response.results
             } catch (e: Exception) {
-                _error.emit("Ошибка при загрузке пользователей: ${e.message}")
+                _error.emit( "${R.string.error_loading_users} ${e.message}")
             } finally {
                 _isLoading.value = false
             }

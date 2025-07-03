@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">android-app-info-user-random</string>
+
+    <string name="user_screen_title">Список пользователей</string>
+    <string name="refresh">Обновить</string>
+    <string name="loading">Загрузка...</string>
+
+    <string name="error_loading_users">Ошибка при загрузке пользователей:</string>
+
+    <string name="user_title">Пользователь</string>
+    <string name="back_button">Назад</string>
+    <string name="user_photo">Фотография пользователя</string>
+    <string name="user_full_name">ФИО</string>
+    <string name="city">Город</string>
+    <string name="phone">Телефон</string>
+    <string name="country">Страна</string>
+    <string name="state">Государство</string>
+    <string name="postcode">Индекс</string>
+    <string name="address">Адрес</string>
+    <string name="coordinates">Координаты</string>
+    <string name="timezone">Часовой пояс</string>
+    <string name="nationality">Национальность</string>
+    <string name="birth_date">Дата рождения</string>
+    <string name="age">Возраст</string>
+    <string name="email">Email</string>
+    <string name="registration_date">Дата регистрации</string>
+    <string name="id">ID</string>
 </resources>

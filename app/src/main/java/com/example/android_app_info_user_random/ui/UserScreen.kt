@@ -2,9 +2,9 @@ package com.example.android_app_info_user_random.ui
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -18,11 +18,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.android_app_info_user_random.viewmodel.UserViewModel
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import com.example.android_app_info_user_random.viewmodel.UserViewModel
+import com.example.android_app_info_user_random.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,13 +55,13 @@ fun UserScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Список пользователей") },
+                title = { Text(text = stringResource(R.string.user_screen_title)) },
                 actions = {
                     IconButton(
                         onClick = { viewModel.loadUsers() },
                         enabled = isRefreshEnabled
                     ) {
-                        Icon(Icons.Filled.Refresh, contentDescription = "Обновить")
+                        Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.refresh))
                     }
                 }
             )
